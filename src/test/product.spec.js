@@ -1,5 +1,4 @@
-const { expect } = require('@playwright/test');
-const { test } = require('../../fixtures');
+const { expect, test} = require('@playwright/test');
 
 test.describe('Product feature', () => {
 

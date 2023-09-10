@@ -5,21 +5,23 @@
   "main": "index.js",
   "dependencies": {
     "browserstack-local": "^1.4.8",
-    "playwright": "^1.17.2",
+    "playwright": "^1.37.1",
     "util": "^0.12.4"
   },
   "devDependencies": {
-    "@playwright/test": "^1.17.2"
+    "@playwright/test": "^1.37.1",
+    "browserstack-node-sdk": "^1.26.3"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "onPrem-endToEnd": "npx playwright test login.spec.js --headed --config=resources/conf/playwright.config.js --project chromium",
     "onPrem-parallel": "npx playwright test --headed --config=resources/conf/playwright.config.js --workers 2",
-    "bstack-single": "npx playwright test login.spec.js --config=resources/conf/playwright-bstack.config.js --project 'chrome@latest:Windows 10@browserstack'",
-    "bstack-parallel-tests": "npx playwright test --config=resources/conf/playwright-bstack.config.js --project 'chrome@latest:Windows 10@browserstack'",
-    "bstack-parallel-browsers": "npx playwright test e2e.spec.js --config=resources/conf/playwright-bstack.config.js --workers 2",
-    "bstack-local": "BROWSERSTACK_LOCAL=true npx playwright test login.spec.js --config=resources/conf/playwright-bstack-local.config.js --project 'chrome@latest:Windows 10@browserstack'",
-    "bstack-local-parallel": "BROWSERSTACK_LOCAL=true npx playwright test login.spec.js --config=resources/conf/playwright-bstack-local.config.js --workers 2"
+    "postinstall": "npm update browserstack-node-sdk",
+    "bstack-single": "npx browserstack-node-sdk playwright test login.spec.js --config=resources/conf/playwright.config.js --browserstack.config=./resources/browserstack-conf/browserstack-single.yml",
+    "bstack-parallel-tests": "npx browserstack-node-sdk playwright test --config=resources/conf/playwright.config.js --browserstack.config=./resources/browserstack-conf/browserstack-parallel.yml",
+    "bstack-parallel-browsers": "npx browserstack-node-sdk playwright test e2e.spec.js --config=resources/conf/playwright.config.js --browserstack.config=./resources/browserstack-conf/browserstack-parallel-browsers.yml",
+    "bstack-local": "npx browserstack-node-sdk playwright test login.spec.js --config=resources/conf/playwright-bstack-local.config.js --browserstack.config=./resources/browserstack-conf/browserstack-local.yml",
+    "bstack-local-parallel": "npx browserstack-node-sdk playwright test login.spec.js --config=resources/conf/playwright-bstack-local.config.js --browserstack.config=./resources/browserstack-conf/browserstack-local.yml"
   },
   "repository": {
     "type": "git",

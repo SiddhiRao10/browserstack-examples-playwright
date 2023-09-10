@@ -3,7 +3,7 @@ const { devices } = require('@playwright/test');
 const config = {
   use: {
     trace: 'on-first-retry',
-    baseURL: 'https://bstackdemo.com'
+    baseURL: 'https://bstackdemo.com',
   },
   testDir: '../../src/test',
   projects: [
@@ -18,7 +18,7 @@ const config = {
     },
     {
       name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      use: { ...devices['iPhone 13'] },
     },
   ],
 };
