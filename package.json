@@ -9,6 +9,8 @@
     "util": "^0.12.4"
   },
   "devDependencies": {
+    "@percy/cli": "^1.28.7",
+    "@percy/playwright": "^1.0.5",
     "@playwright/test": "^1.17.2"
   },
   "scripts": {
